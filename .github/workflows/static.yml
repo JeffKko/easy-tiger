@@ -33,11 +33,27 @@ jobs:
         uses: actions/checkout@v3
       - name: Setup Pages
         uses: actions/configure-pages@v3
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
+      # Runs a single command using the runners shell
+      - name: install dependencies
+        run: npm install
+
+      # Runs a single command using the runners shell
+      - name: try to build the project
+        run: npm run build
+
+      # use actions-gh-pages to deploy dist to gh-pages
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          # Upload entire repository
-          path: '.'
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v2
+          # github will auto-generate a token for this job and use it
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+
+      # - name: Upload artifact
+      #   uses: actions/upload-pages-artifact@v2
+      #   with:
+      #     # Upload entire repository
+      #     path: '.'
+      # - name: Deploy to GitHub Pages
+      #   id: deployment
+      #   uses: actions/deploy-pages@v2

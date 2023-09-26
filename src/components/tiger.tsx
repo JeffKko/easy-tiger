@@ -58,7 +58,9 @@ const getResult = async (config: QueryProps) => {
   }
 
   try {
-    const { data } = await axios.post<Result>('http://localhost:8082/api/v1/momoMock/redirect', payload)
+    // const endpoint = 'http://localhost:8082'
+    const hostname = 'https://rich-kko.de.r.appspot.com'
+    const { data } = await axios.post<Result>(`${hostname}/api/v1/momoMock/redirect`, payload)
 
     return data?.data?.appLiveDailyPrices
   } catch (error) {
@@ -75,6 +77,8 @@ export const  Tiger = () => {
   const [flightList, setFlightList] = useState<FlightInfo[]>([])
 
   const handleSelectSinceDate = useCallback((newValue: Dayjs | null) => {
+    if (!newValue) return
+
     setStartDate(newValue)
     if (newValue.isAfter(endDate)) {
       setEndDate(newValue.add(7, 'day'))
