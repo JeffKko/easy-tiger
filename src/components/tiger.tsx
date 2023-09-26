@@ -15,7 +15,7 @@ interface QueryProps {
   sinceDate: string
   untilDate: string
   code: string
-  sessionId?: string
+  sessionID?: string
 }
 
 // "origin": "NGO",
@@ -44,7 +44,7 @@ const getResult = async (config: QueryProps) => {
     "operationName": "appLiveDailyPrices",
     "variables": {
       "input": {
-        "sessionId": config.sessionId ?? "651311dca8e7cf9ac60c16ee",
+        "sessionId": config.sessionID ?? "651311dca8e7cf9ac60c16ee",
         "origin": config.code ?? "NGO",
         "destination": "XX3",
         "userCurrency": "TWD",
@@ -90,8 +90,8 @@ export const  Tiger = () => {
       const config = {
         sinceDate: startDate.format('YYYY-MM-DD'),
         untilDate: endDate.format('YYYY-MM-DD'),
-        code,
         sessionID,
+        code,
       }
       const result = await getResult(config)
 
