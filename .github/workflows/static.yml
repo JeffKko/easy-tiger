@@ -41,11 +41,11 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: install dependencies
-        run: npm install
+        run: yarn
 
       # Runs a single command using the runners shell
       - name: try to build the project
-        run: npm run build
+        run: yarn run build
 
       # use actions-gh-pages to deploy dist to gh-pages
       - name: Deploy
