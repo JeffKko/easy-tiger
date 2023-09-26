@@ -91,6 +91,7 @@ export const  Tiger = () => {
         sinceDate: startDate.format('YYYY-MM-DD'),
         untilDate: endDate.format('YYYY-MM-DD'),
         code,
+        sessionID,
       }
       const result = await getResult(config)
 
@@ -101,7 +102,7 @@ export const  Tiger = () => {
 
       setFlightList(result)
     })()
-  }, [startDate, endDate, code])
+  }, [startDate, endDate, code, sessionID])
 
   return (
     <div>
